@@ -29,7 +29,8 @@ io.sockets.on('connection',function(socket){
     });
 
     socket.on('chat',function(data){
-        socket.broadcast.emit('chat',data);
+    		console.log("接收到用户msg:"+data);
+        io.sockets.emit('chat',data);
 
     });
     socket.on('logout',function(){

@@ -6,6 +6,7 @@ var app = new Vue({
     title: 'Socket IO 聊天室!',
     persons:[
     ],
+    chatdata:'',
     msg:'',
     username:''
   },
@@ -20,7 +21,6 @@ var app = new Vue({
   				}
   			socket = io();
   			this.addMsg("正在建立连接……");
-  			
   			socket.on('connect',function(){
   					console.log("已经建立连接");
   				  document.getElementById('msgSpan').innerHTML +='<p>聊天服务器连接建立成功</p>';
@@ -33,10 +33,15 @@ var app = new Vue({
 									console.log("返回用户列表信息"+names);
 								app.persons=names;
 							});
+						socket.on('chat',function(data){
+								 document.getElementById('msgSpan').innerHTML +='<p>'+data.username+"说："+data.msg+'</p>';
+							});
   				});
-					
-			
-			
-  			}
+  			},
+  		sendDta:function(){
+  			console.log("发送消息");
+  				socket.emit('chat', {username:this.username,msg:this.chatdata});
+  		}
+  		
   }
 });
