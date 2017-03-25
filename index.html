@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>聊天室</title>
+</head>
+<body>
+    <div id="content" style="width: 800px;">
+        <h1>{{title}}</h1>
+        <div>
+            用户名：<input type="text" name="name" v-model='username'> <input type="button" @click='login()'  value="登录"/> <input type="button" value="退出"/>
+        </div>
+        <div style="display: flex;justify-content:space-between;padding: 20px;">
+            <div>
+                <div style="width: 500px;height: 300px;background: grey" v-html="msg" id="msgSpan">
+                	
+                	
+                </div>
+                <div style="padding-top: 20px;" >
+                    <textarea></textarea> <input type="button" value="发送"/>
+                </div>   
+            </div>
+            <div>
+                用户列表：
+                <ul>
+                    <li v-for='item in persons'>
+                        {{item}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="dist/vue.min.js"></script>
+<script type="text/javascript" src="dist/vue-resource.min.js"></script>
+<script type="text/javascript" src="dist/index.js"></script>
+<script type="text/javascript" src="dist/socket.io.min.js"></script>
+</html>
